@@ -50,8 +50,15 @@ def row_sum(matrix):
             sums[i] += matrix[i][j]
     return sums.reshape(n,1)
 
-# Step 4 - exp_shifted (not yet solved)
-# TODO: implement
+# Step 4 - exp_shifted
+import numpy as np
+
+def exp_shifted(logits):
+    """Subtract per-row max from logits and exponentiate elementwise."""
+    # TODO: shift each row of logits by its max and return elementwise exp
+    logits = logits - row_max(logits)*np.ones_like(logits)
+    e = np.exp(logits)
+    return e
 
 # Step 5 - stable_softmax (not yet solved)
 # TODO: implement
