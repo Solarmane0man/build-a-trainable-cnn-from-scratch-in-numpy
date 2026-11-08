@@ -20,8 +20,22 @@ def argmax_rows(matrix):
                 maxi[i] = j
     return maxi
 
-# Step 2 - row_max (not yet solved)
-# TODO: implement
+# Step 2 - row_max
+import numpy as np
+
+def row_max(matrix):
+    # TODO: return the maximum value of each row of `matrix` with keepdims True for broadcasting.
+        # TODO: return the index of the largest element in each row of a 2D array
+    n , p = matrix.shape
+    bests=  matrix[:, 0].copy() 
+   
+
+    for i in range(n):
+        for j in range(1,p):
+            if matrix[i,j]>bests[i]:
+                bests[i] = matrix[i,j]
+                
+    return bests.reshape(n,1)
 
 # Step 3 - row_sum (not yet solved)
 # TODO: implement
