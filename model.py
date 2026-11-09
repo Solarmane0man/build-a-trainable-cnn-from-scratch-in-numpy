@@ -95,8 +95,11 @@ def cross_entropy_loss(probs, labels, eps=1e-12):
     res = -np.log(true_probs).sum()
     return res/N
 
-# Step 9 - accuracy (not yet solved)
-# TODO: implement
+# Step 9 - accuracy
+def accuracy(logits_or_probs, labels):
+    # TODO: return the fraction of rows whose argmax matches the integer label.
+    max_probs = argmax_rows(logits_or_probs)
+    return (max_probs==labels).sum()/len(logits_or_probs)
 
 # Step 10 - he_std (not yet solved)
 # TODO: implement
