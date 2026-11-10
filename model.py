@@ -119,8 +119,15 @@ def init_zero_bias(length):
     # TODO: return a 1D float array of zeros with the given length.
     return np.zeros(length)
 
-# Step 13 - pad_2d (not yet solved)
-# TODO: implement
+# Step 13 - pad_2d
+def pad_2d(images, pad):
+    
+    
+    N,C,H,W = images.shape
+    out = np.zeros((N,C,H+2*pad,W+2*pad), dtype = images.dtype)
+   
+    out[:,:,pad:H+pad,pad:W+pad] = images
+    return out
 
 # Step 14 - output_spatial_size (not yet solved)
 # TODO: implement
