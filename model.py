@@ -133,8 +133,21 @@ def pad_2d(images, pad):
 def output_spatial_size(input_size, kernel, stride, padding):
     return (input_size+2*padding-kernel)//stride +1
 
-# Step 15 - im2col (not yet solved)
-# TODO: implement
+# Step 15 - im2col
+def im2col(images, kernel_h, kernel_w, stride, padding):
+    # TODO: Unroll overlapping patches of a 4D image tensor into a 2D column matrix.
+    
+    N,C,H,W = images.shape
+    out_h = output_spatial_size(H,kernel_h,stride,padding)
+    out_w = output_spatial_size(W,kernel_w,stride,padding)
+    x = pad_2d(images,padding)
+
+    cols = np.zeros((N,C,kernel_h,kernel_w,out_h,out_w), dtype = x.dtype)
+    for a in range(kernel_h):
+        for b in range(kernel_w):
+            cols[:,:,a,b] = x[:,:,a:a+out_h*stride:stride, b:b+out_w*stride:stride]
+        
+    return cols.transpose(0,4,5,1,2,3).reshape(N*out_h*out_w,-1)
 
 # Step 16 - col2im (not yet solved)
 # TODO: implement
