@@ -217,8 +217,13 @@ def conv2d_grad_weights(d_out, cache):
     dW = (d_mat.T@ cols).reshape(weights.shape)
     return dW
 
-# Step 20 - conv2d_grad_bias (not yet solved)
-# TODO: implement
+# Step 20 - conv2d_grad_bias
+def conv2d_grad_bias(d_out):
+    # TODO: return a length C_out gradient by reducing d_out over batch and spatial axes
+    
+    
+    db = d_out.sum(axis=(0,2,3))
+    return db
 
 # Step 21 - conv2d_backward (not yet solved)
 # TODO: implement
