@@ -165,7 +165,7 @@ def col2im(cols, input_shape, kernel_h, kernel_w, stride, padding):
 
 # Step 17 - conv2d_forward
 def conv2d_forward(x, weights, bias, stride, padding):
-    # TODO: convolve x with weights using im2col, add bias, return output and a backprop cache.
+   
     F,_,kh, kw = weights.shape
     N,C,H,W = x.shape
     out_h = output_spatial_size(H, kh, stride, padding)
