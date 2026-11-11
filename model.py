@@ -252,10 +252,8 @@ import numpy as np
 def scatter_grad_window(grad_value, argmax_index, kernel):
     "place grad_value at the argmax position within a (kernel, kernel) zero array."
     block = np.zeros((kernel,kernel))
-    for i in range(kernel):
-        for j in range(kernel):
-            if i*kernel +j == argmax_index:
-                block[i,j] = grad_value
+    block[argmax_index//kernel, argmax_index%kernel] = grad_value
+    
     return block
 
 # Step 24 - maxpool2d_backward
