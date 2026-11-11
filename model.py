@@ -278,8 +278,11 @@ def maxpool2d_backward(d_out, cache):
                     grad_res[n,c,i*stride:i*stride+kernel,j*stride:j*stride+kernel] += scatter_grad_window(d_out[n,c,i,j],argmax[n,c,i,j],kernel)
     return grad_res
 
-# Step 25 - relu_forward (not yet solved)
-# TODO: implement
+# Step 25 - relu_forward
+def relu_forward(x):
+    # TODO: Compute the elementwise ReLU and cache the input for backprop.
+    out = np.maximum(0,x)
+    return out, {'x':x}
 
 # Step 26 - relu_backward (not yet solved)
 # TODO: implement
