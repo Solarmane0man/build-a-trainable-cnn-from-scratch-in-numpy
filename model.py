@@ -258,7 +258,7 @@ def scatter_grad_window(grad_value, argmax_index, kernel):
 
 # Step 24 - maxpool2d_backward
 def maxpool2d_backward(d_out, cache):
-    # TODO: scatter each d_out value to the cached argmax position in its window
+    "scatter each d_out value to the cached argmax position in its window"
     
     
     N,C,H,W   = cache['x_shape']
