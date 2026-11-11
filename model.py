@@ -302,7 +302,7 @@ def flatten_forward(x):
 import numpy as np
 
 def flatten_backward(d_out, cache):
-    # TODO: reshape the upstream gradient back to the original 4D feature map shape.
+    "reshape the upstream gradient back to the original 4D feature map shape."
     N,C,W,H = cache['x_shape']
     return d_out.reshape(N,C,W,H)
 
