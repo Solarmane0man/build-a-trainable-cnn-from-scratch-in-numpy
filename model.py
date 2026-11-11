@@ -312,8 +312,14 @@ def linear_forward(x, weights, bias):
     out = x@weights+bias
     return out, {'x':x,'weights':weights}
 
-# Step 30 - linear_grad_input (not yet solved)
-# TODO: implement
+# Step 30 - linear_grad_input
+import numpy as np
+
+def linear_grad_input(d_out, cache):
+    """Gradient of a linear layer w.r.t. its input X."""
+    
+    weights = cache['weights']
+    return d_out@weights.T
 
 # Step 31 - linear_grad_weights (not yet solved)
 # TODO: implement
