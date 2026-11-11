@@ -163,8 +163,29 @@ def col2im(cols, input_shape, kernel_h, kernel_w, stride, padding):
             x[:, :, a:a + stride*out_h:stride, b:b + stride*out_w:stride] += c6[:, :, a, b]
     return x[:,:,padding:padding+H, padding:padding+W]
 
-# Step 17 - conv2d_forward (not yet solved)
-# TODO: implement
+# Step 17 - conv2d_forward
+def conv2d_forward(x, weights, bias, stride, padding):
+    # TODO: convolve x with weights using im2col, add bias, return output and a backprop cache.
+    F,_,kh, kw = weights.shape
+    N,C,H,W = x.shape
+    out_h = output_spatial_size(H, kh, stride, padding)
+    out_w = output_spatial_size(W, kw, stride, padding)
+
+    cols = im2col(x,kh,kw, stride, padding)
+    w_mat = weights.reshape(F,-1)
+    y = cols @ w_mat.T + bias
+    y = y.reshape(N,out_h,out_w,F).transpose(0, 3, 1, 2)
+    
+    cache = {
+        "x_shape": x.shape,
+        "weights": weights,
+        "cols": cols,
+        "stride": stride,
+        "padding": padding,
+        "kernel_h": kh,
+        "kernel_w": kw,
+    }
+    return y,cache
 
 # Step 18 - conv2d_grad_input (not yet solved)
 # TODO: implement
