@@ -358,8 +358,12 @@ def softmax_cross_entropy_backward(logits, y):
     Y = stable_softmax(logits)
     return (Y-y)/N
 
-# Step 36 - sgd_step (not yet solved)
-# TODO: implement
+# Step 36 - sgd_step
+import numpy as np
+
+def sgd_step(param, grad, lr):
+    "# return the SGD-updated parameter array (param - lr * grad)."
+    return param -lr*grad
 
 # Step 37 - adam_update_m (not yet solved)
 # TODO: implement
