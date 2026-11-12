@@ -328,8 +328,12 @@ def linear_grad_weights(x, dout):
     """Gradient of loss wrt linear-layer weights W of shape (D_in, D_out)."""
     return x.T@dout
 
-# Step 32 - linear_grad_bias (not yet solved)
-# TODO: implement
+# Step 32 - linear_grad_bias
+import numpy as np
+
+def linear_grad_bias(dout):
+    " Compute the bias gradient of a linear layer given upstream gradient dout."
+    return dout.sum(axis=0)
 
 # Step 33 - linear_backward (not yet solved)
 # TODO: implement
