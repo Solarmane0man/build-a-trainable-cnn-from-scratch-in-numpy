@@ -350,8 +350,13 @@ def softmax_cross_entropy_forward(logits, y):
    
     return cross_entropy_loss(e,y) + 0.0
 
-# Step 35 - softmax_cross_entropy_backward (not yet solved)
-# TODO: implement
+# Step 35 - softmax_cross_entropy_backward
+def softmax_cross_entropy_backward(logits, y):
+    "#return the fused softmax-cross-entropy gradient of shape (N, C)."
+    N,C = logits.shape
+    y = one_hot(y,C)
+    Y = stable_softmax(logits)
+    return (Y-y)/N
 
 # Step 36 - sgd_step (not yet solved)
 # TODO: implement
