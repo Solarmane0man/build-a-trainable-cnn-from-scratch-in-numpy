@@ -347,8 +347,8 @@ def softmax_cross_entropy_forward(logits, y):
     "return the mean cross-entropy loss for logits (N, C) and integer labels y (N,)."
     
     e = stable_softmax(logits)
-    y = logits[np.arange(len(y)),y]
-    return cross_entropy_loss(e,y)
+   
+    return cross_entropy_loss(e,y) + 0.0
 
 # Step 35 - softmax_cross_entropy_backward (not yet solved)
 # TODO: implement
