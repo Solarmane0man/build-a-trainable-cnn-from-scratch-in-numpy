@@ -372,8 +372,12 @@ def adam_update_m(m, grad, beta_one):
     "return the updated first moment estimate using beta_one and grad."
     return m*beta_one + grad*(1-beta_one)
 
-# Step 38 - adam_update_v (not yet solved)
-# TODO: implement
+# Step 38 - adam_update_v
+import numpy as np
+
+def adam_update_v(v, grad, beta_two):
+    "return the updated Adam second moment estimate as an EMA of squared gradients."
+    return beta_two*v + (1-beta_two)*grad**2
 
 # Step 39 - adam_bias_correct (not yet solved)
 # TODO: implement
