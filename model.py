@@ -464,8 +464,16 @@ def backward_conv_block(dout, cache):
     relu_dout = relu_backward(pool_dout,cache['relu_cache'])
     return conv2d_backward(relu_dout,cache['conv_cache'])
 
-# Step 49 - backward_classifier_block (not yet solved)
-# TODO: implement
+# Step 49 - backward_classifier_block
+def backward_classifier_block(dlogits, cache):
+    " through fc2 -> relu -> fc1 -> flatten using the cached values"
+    fc2_dout,dW2,db2 = linear_backward(dlogits,cache['fc2_cache'])
+    fc2_cache = {'dW':dW2,'db':db2}
+    relu_dout = relu_backward(fc2_dout,cache['relu_cache'])
+    fc1_dout,dW1,db1 = linear_backward(relu_dout,cache['fc1_cache'])
+    fc1_cache = {'dW':dW1,'db':db1}
+    dx = flatten_backward(fc1_dout,cache['flatten_cache'])
+    return {'dx':dx,'fc1':fc1_cache,'fc2':fc2_cache}
 
 # Step 50 - lenet_backward (not yet solved)
 # TODO: implement
