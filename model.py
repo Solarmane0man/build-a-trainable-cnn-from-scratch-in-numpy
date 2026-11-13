@@ -448,8 +448,13 @@ def forward_classifier_block(x, fc1, fc2):
    out,fc2_cache = linear_forward(res1,fc2['W'],fc2['b'])
    return out, {'flatten_cache':flatten_cache,'fc1_cache':fc1_cache,'relu_cache':relu_cache,'fc2_cache':fc2_cache}
 
-# Step 47 - lenet_forward (not yet solved)
-# TODO: implement
+# Step 47 - lenet_forward
+def lenet_forward(x, params):
+    "run two conv blocks then the classifier block and return (logits, caches)."
+    x_c1,conv1_cache = forward_conv_block(x, params['conv1']['W'],params['conv1']['b'],2,1,0)
+    x_c2,conv2_cache = forward_conv_block(x_c1, params['conv2']['W'],params['conv2']['b'],2,1,0)
+    out, classiffier = forward_classifier_block(x_c2,params['fc1'],params['fc2'])    
+    return out, {'block1':conv1_cache, 'block2': conv2_cache, 'classifier':classiffier}
 
 # Step 48 - backward_conv_block (not yet solved)
 # TODO: implement
